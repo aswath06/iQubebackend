@@ -12,7 +12,9 @@ const PORT = process.env.PORT || 3000;
 const HOST = '0.0.0.0';
 
 // ========== Middlewares ==========
-app.use(cors()); // Optional: allow cross-origin requests
+app.use(cors({
+  origin: "*"
+})); // Optional: allow cross-origin requests
 app.use(bodyParser.json());
 app.use(morgan('dev')); // Optional: log HTTP requests
 
@@ -23,6 +25,7 @@ require('./routes/note.routes')(app);
 require('./routes/timetable.routes')(app);
 require('./routes/socialmedia.routes')(app);
 require('./routes/auth.routes')(app);
+
 
 // ========== Get Local Network IP ==========
 function getLocalIP() {

@@ -1,6 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const { User, SocialMedia, Note, Todo, Timetable } = require('../models');
+const {
+  User,
+  SocialMedia,
+  Note,
+  Todo,
+  Timetable,
+} = require('../models');
+
+const socialController = require('../controllers/socialMedia.controller');
 
 // ➕ Create user
 router.post('/', async (req, res) => {
@@ -102,6 +110,9 @@ router.put('/:id', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+// 🔄 Update social media by userId
+router.put('/:id/socialmedia', socialController.updateByUserId);
 
 // ❌ Delete user
 router.delete('/:id', async (req, res) => {

@@ -11,7 +11,7 @@ module.exports = (app) => {
     }
   });
 
-  // Get social media by primary key (id)
+  // Get social media by ID (primary key)
   app.get('/socialmedia/:id', async (req, res) => {
     try {
       const sm = await SocialMedia.findByPk(req.params.id);
@@ -22,7 +22,7 @@ module.exports = (app) => {
     }
   });
 
-  // ✅ Get social media info by userId
+  // Get social media by userId
   app.get('/socialmedia/user/:userId', async (req, res) => {
     try {
       const userId = req.params.userId;
@@ -46,19 +46,23 @@ module.exports = (app) => {
     }
   });
 
-  // Update social media by id
-  app.put('/socialmedia/:id', async (req, res) => {
+  // ✅ Update social media by userId in request body
+  app.put('/socialmedia', async (req, res) => {
     try {
-      const sm = await SocialMedia.findByPk(req.params.id);
+      const { userId, ...fields } = req.body;
+      if (!userId) return res.status(400).json({ message: 'userId is required' });
+
+      const sm = await SocialMedia.findOne({ where: { userId } });
       if (!sm) return res.status(404).json({ message: 'Not found' });
-      await sm.update(req.body);
+
+      await sm.update(fields);
       res.json(sm);
     } catch (err) {
       res.status(500).json({ message: 'Server error', error: err.message });
     }
   });
 
-  // Delete social media by id
+  // Delete social media by ID
   app.delete('/socialmedia/:id', async (req, res) => {
     try {
       const sm = await SocialMedia.findByPk(req.params.id);

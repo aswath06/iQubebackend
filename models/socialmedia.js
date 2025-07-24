@@ -9,7 +9,10 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   SocialMedia.init({
-    userId: DataTypes.INTEGER,
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     linkedin: DataTypes.STRING,
     leetcode: DataTypes.STRING,
     codechef: DataTypes.STRING,

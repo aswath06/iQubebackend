@@ -12,22 +12,19 @@ const PORT = process.env.PORT || 3000;
 const HOST = '0.0.0.0';
 
 // ========== Middlewares ==========
-app.use(cors({
-  origin: "*"
-})); // Optional: allow cross-origin requests
+app.use(cors({ origin: "*" }));
 app.use(bodyParser.json());
-app.use(morgan('dev')); // Optional: log HTTP requests
+app.use(morgan('dev'));
 
 // ========== Routes ==========
 require('./routes/user.routes')(app);
 require('./routes/todo.routes')(app);
 require('./routes/note.routes')(app);
 require('./routes/timetable.routes')(app);
-require('./routes/socialmedia.routes')(app);
+require('./routes/socialmedia.routes')(app); // ✅ Your social media routes
 require('./routes/auth.routes')(app);
 
-
-// ========== Get Local Network IP ==========
+// ========== Get Local IP ==========
 function getLocalIP() {
   const interfaces = os.networkInterfaces();
   for (const name of Object.keys(interfaces)) {
@@ -40,8 +37,8 @@ function getLocalIP() {
   return 'localhost';
 }
 
-// ========== Database & Server Startup ==========
-db.sequelize.sync({ alter: true }) // use { force: true } to drop & recreate all tables
+// ========== Start Server ==========
+db.sequelize.sync({ alter: true }) // alter updates schema without dropping data
   .then(() => {
     const localIP = getLocalIP();
     app.listen(PORT, HOST, () => {

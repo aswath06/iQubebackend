@@ -23,6 +23,8 @@ require('./routes/note.routes')(app);
 require('./routes/timetable.routes')(app);
 require('./routes/socialmedia.routes')(app); // ✅ Your social media routes
 require('./routes/auth.routes')(app);
+require('./routes/quote.routes')(app);
+
 
 // ========== Get Local IP ==========
 function getLocalIP() {

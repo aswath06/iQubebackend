@@ -28,8 +28,9 @@ db.SocialMedia = require('./socialmedia')(sequelize, DataTypes);
 db.Timetable = require('./timetable')(sequelize, DataTypes);
 db.Note = require('./note')(sequelize, DataTypes);
 db.Todo = require('./todo')(sequelize, DataTypes);
+db.Quote = require('./quote')(sequelize, DataTypes);  // <-- Add this line
 
-// ✅ Let each model define its own associations
+// Let each model define its own associations
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
     db[modelName].associate(db);

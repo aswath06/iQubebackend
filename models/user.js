@@ -32,6 +32,22 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
       defaultValue: null,
     },
+    parentId: {
+  type: DataTypes.INTEGER,
+  allowNull: true,
+  defaultValue: null,
+},
+pid: {
+  type: DataTypes.INTEGER,
+  allowNull: true,
+  defaultValue: null,
+},
+role: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    defaultValue: 'student', 
+  },
+
   }, {
     sequelize,
     modelName: 'User',

@@ -9,12 +9,13 @@ exports.updateByUserId = async (req, res) => {
     });
 
     if (updatedRows === 1) {
-      res.status(200).json({ message: 'Updated successfully' });
+      const updatedSocialMedia = await SocialMedia.findOne({ where: { userId } });
+      res.status(200).json({ message: 'Updated successfully', data: updatedSocialMedia });
     } else {
       res.status(404).json({ message: 'User not found or no changes made' });
     }
   } catch (error) {
     console.error('❌ Error updating social media:', error);
-    res.status(500).json({ message: 'Update failed', error });
+    res.status(500).json({ message: 'Update failed', error: error.message });
   }
 };

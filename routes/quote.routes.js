@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { Quote } = require('../models');  // Make sure this path is correct
+const { Quote, Sequelize } = require('../models');
 
 module.exports = (app) => {
-  // POST /quotes — add a single quote
   router.post('/', async (req, res) => {
     try {
       const { text } = req.body;
@@ -17,7 +16,6 @@ module.exports = (app) => {
     }
   });
 
-  // POST /quotes/bulk — bulk add quotes
   router.post('/bulk', async (req, res) => {
     try {
       const { quotes } = req.body;
@@ -34,14 +32,10 @@ module.exports = (app) => {
     }
   });
 
-  // GET /quotes/random — get a random quote
   router.get('/random', async (req, res) => {
     try {
-      const count = await Quote.count();
-      if (count === 0) return res.status(404).json({ error: 'No quotes found' });
-
-      const randomIndex = Math.floor(Math.random() * count);
-      const randomQuote = await Quote.findOne({ offset: randomIndex });
+      const randomQuote = await Quote.findOne({ order: Sequelize.literal('RANDOM()') });
+      if (!randomQuote) return res.status(404).json({ error: 'No quotes found' });
 
       res.json(randomQuote);
     } catch (error) {

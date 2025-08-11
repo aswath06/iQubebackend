@@ -5,7 +5,7 @@ const morgan = require('morgan');
 const os = require('os');
 require('dotenv').config();
 
-const db = require('./models');
+const db = require('./models'); // make sure this points to your updated Sequelize setup with PostgreSQL
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -21,10 +21,9 @@ require('./routes/user.routes')(app);
 require('./routes/todo.routes')(app);
 require('./routes/note.routes')(app);
 require('./routes/timetable.routes')(app);
-require('./routes/socialmedia.routes')(app); // ✅ Your social media routes
+require('./routes/socialmedia.routes')(app);
 require('./routes/auth.routes')(app);
 require('./routes/quote.routes')(app);
-
 
 // ========== Get Local IP ==========
 function getLocalIP() {
@@ -40,7 +39,7 @@ function getLocalIP() {
 }
 
 // ========== Start Server ==========
-db.sequelize.sync({ alter: true }) // alter updates schema without dropping data
+db.sequelize.sync({ alter: true }) // will update your tables schema without dropping data
   .then(() => {
     const localIP = getLocalIP();
     app.listen(PORT, HOST, () => {

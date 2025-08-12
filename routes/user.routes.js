@@ -60,6 +60,21 @@ router.get('/', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+router.post('/:id/resetpid', async (req, res) => {
+  try {
+    const { pin, pid } = req.body;
+    const user = await User.findByPk(req.params.id);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    user.pin = pin;
+    user.pid = pid;
+    await user.save();
+
+    res.json({ message: 'PID reset successfully', user });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 router.get('/:id', async (req, res) => {
   try {

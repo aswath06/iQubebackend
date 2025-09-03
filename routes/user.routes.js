@@ -323,6 +323,32 @@ router.get('/parent/:parentId/students', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+router.post('/:id/setpid', async (req, res) => {
+  try {
+    const { pid, pin } = req.body; // both optional or required as per your use case
+
+    if (!pid) {
+      return res.status(400).json({ error: 'PID is required' });
+    }
+
+    const user = await User.findByPk(req.params.id);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Update pid and optionally pin
+    user.pid = pid;
+    if (pin) {
+      user.pin = pin;
+    }
+
+    await user.save();
+
+    res.json({ message: 'PID set successfully', user });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 
 

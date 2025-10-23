@@ -1,25 +1,25 @@
 {
   "development": {
-    "username": "iqube_user",
-    "password": "xorRFWDlrQEIrDNSGV0nrXz2IrHrYDNI",
-    "database": "iqube",
-    "host": "dpg-d374a7umcj7s73fd9hd0-a.oregon-postgres.render.com",
+    "username": "iqube_dmvq_user",
+    "password": "PGubYHiZtskyOTfvyTOEkcFALuXmFk9o",
+    "database": "iqube_dmvq",
+    "host": "dpg-d3t4h6mr433s73e9dhv0-a.oregon-postgres.render.com",
     "port": 5432,
     "dialect": "postgres"
   },
   "test": {
-    "username": "iqube_user",
-    "password": "xorRFWDlrQEIrDNSGV0nrXz2IrHrYDNI",
-    "database": "iqube",
-    "host": "dpg-d374a7umcj7s73fd9hd0-a.oregon-postgres.render.com",
+    "username": "iqube_dmvq_user",
+    "password": "PGubYHiZtskyOTfvyTOEkcFALuXmFk9o",
+    "database": "iqube_dmvq",
+    "host": "dpg-d3t4h6mr433s73e9dhv0-a.oregon-postgres.render.com",
     "port": 5432,
     "dialect": "postgres"
   },
   "production": {
-    "username": "iqube_user",
-    "password": "xorRFWDlrQEIrDNSGV0nrXz2IrHrYDNI",
-    "database": "iqube",
-    "host": "dpg-d374a7umcj7s73fd9hd0-a.oregon-postgres.render.com",
+    "username": "iqube_dmvq_user",
+    "password": "PGubYHiZtskyOTfvyTOEkcFALuXmFk9o",
+    "database": "iqube_dmvq",
+    "host": "dpg-d3t4h6mr433s73e9dhv0-a.oregon-postgres.render.com",
     "port": 5432,
     "dialect": "postgres"
   }
